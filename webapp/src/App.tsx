@@ -1,10 +1,11 @@
 import {
   ClerkProvider,
-  RedirectToSignIn,
+  SignIn,
   SignedIn,
   SignedOut,
   UserButton,
 } from '@clerk/clerk-react'
+import { ptBR } from '@clerk/localizations'
 import { html } from '@codemirror/lang-html'
 import { atomone } from '@uiw/codemirror-theme-atomone'
 import CodeMirror from '@uiw/react-codemirror'
@@ -19,7 +20,7 @@ const App = () => {
   const solution = '<h1>Olá mundo!</h1>'
 
   const handleCheckResult = () => {
-    if (code.includes(solution)) {
+    if (code.toLowerCase().includes(solution.toLowerCase())) {
       setResult('Parabéns! Você acertou!')
     } else {
       setResult('Ops! Tente novamente.')
@@ -27,7 +28,10 @@ const App = () => {
   }
 
   return (
-    <ClerkProvider publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
+    <ClerkProvider
+      publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}
+      localization={ptBR}
+    >
       <SignedIn>
         <h1 className="text-3xl font-bold">Bem-vindo(a) ao DEVZ</h1>
 
@@ -59,7 +63,7 @@ const App = () => {
         <div>{result}</div>
       </SignedIn>
       <SignedOut>
-        <RedirectToSignIn />
+        <SignIn />
       </SignedOut>
     </ClerkProvider>
   )

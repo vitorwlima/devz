@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^4.21.0",
+    "@clerk/localizations": "^1.22.0",
     "@codemirror/lang-html": "^6.4.5",
     "@rocketseat/eslint-config": "^1.2.0",
     "@uiw/codemirror-theme-atomone": "^4.21.7",
