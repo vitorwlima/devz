@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.cm-content {
+  padding: 0 !important;
+}
+
+.cm-editor.cm-focused {
+  outline: none;
+}

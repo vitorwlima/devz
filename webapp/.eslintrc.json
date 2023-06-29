@@ -2,5 +2,6 @@
   "extends": ["@rocketseat/eslint-config/react", "plugin:tailwindcss/recommended"],
   "rules": {
     "import/no-absolute-path": "off"
-  }
+  },
+  "ignorePatterns": ["*.d.ts"]
 }
