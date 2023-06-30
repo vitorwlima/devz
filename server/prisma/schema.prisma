@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Module {
+  id          String @id @default(uuid())
+  name        String
+  slug        String
+  description String
+
+  Lesson Lesson[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("modules")
+}
+
+model Lesson {
+  id      String @id @default(uuid())
+  name    String
+  slug    String
+  order   Int
+  content String
+
+  moduleId Module     @relation(fields: [id], references: [id])
+  Exercise Exercise[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("lessons")
+}
+
+model Exercise {
+  id      String @id @default(uuid())
+  name    String
+  slug    String
+  order   Int
+  content String
+
+  lessonId       Lesson           @relation(fields: [id], references: [id])
+  RequiredString RequiredString[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("exercises")
+}
+
+model RequiredString {
+  id    String @id @default(uuid())
+  value String
+
+  exerciseId Exercise @relation(fields: [id], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("requiredStrings")
+}
